@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1 - Terms and Conditions</title>
+</head>
+<body>
+    <h1>Terms and Conditions</h1>
+    
+    <p>Please read the following terms:</p>
+    <p>This site owner is not responsible for any incidents, and I, the user, am accountable for any issues.</p>
+    
+    <label for="agreement">I agree to the terms and conditions:</label>
+    <input type="checkbox" id="agreement" onchange="toggleEnterButton()">
+    
+    <br><br>
+    <button id="enterButton" disabled onclick="goToNextPage()">Enter</button>
+    
+    <div id="entryDetails" style="display:none;">
+        <p>Entry time: <span id="timestamp"></span></p>
+        <p>This person agreed to the terms and entered the game at this time.</p>
+    </div>
+
+    <script>
+        function toggleEnterButton() {
+            var checkbox = document.getElementById('agreement');
+            var button = document.getElementById('enterButton');
+            var timestamp = document.getElementById('timestamp');
+            var currentDate = new Date();
+            if (checkbox.checked) {
+                button.disabled = false;
+                timestamp.innerHTML = currentDate.getFullYear() + ":" + (currentDate.getMonth() + 1) + ":" + currentDate.getDate() + ":" + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+            } else {
+                button.disabled = true;
+            }
+        }
+
+        function goToNextPage() {
+            // Show the entry details once the user clicks enter
+            document.getElementById('entryDetails').style.display = 'block';
+            // Redirect to the next page (for example, Page 2)
+            window.location.href = 'page2.html';
+        }
+    </script>
+</body>
+</html>
